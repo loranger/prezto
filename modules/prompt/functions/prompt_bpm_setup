@@ -1,0 +1,80 @@
+#
+# Based on sorin theme
+#
+# Authors:
+#   Bao Pham <gbaopham@gmail.com>
+#
+# Screenshots:
+#   http://i.imgur.com/Qe5Xy.png
+#   http://i.imgur.com/1ERz4.png
+#
+# GistID: 4230860
+#
+
+# Load dependencies.
+pmodload 'helper'
+
+function prompt_bpm_pwd {
+  if [ -n "$SSH_CONNECTION" ] ; then
+    _prompt_bpm_pwd='%F{green}%n@%m %40<...<%~%f'
+  else
+    if [ "$USER" != "baopham" ] ; then
+      _prompt_bpm_pwd='%F{green}%n %40<...<%~%f'
+    else
+      _prompt_bpm_pwd='%F{green}%40<...<%~%f'
+    fi
+  fi
+}
+
+function prompt_bpm_precmd {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+
+  # Format PWD.
+  prompt_bpm_pwd
+
+  # Get Git repository information.
+  if (( $+functions[git-info] )); then
+    git-info
+  fi
+}
+
+function prompt_bpm_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook precmd prompt_bpm_precmd
+
+  zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
+  zstyle ':prezto:module:editor:info:keymap:primary' format " %B%F{green}❯%f%b"
+  zstyle ':prezto:module:editor:info:keymap:alternate' format " %B%F{red}❯%f%b"
+  zstyle ':prezto:module:git:info:branch' format '%F{cyan}%b%f'               # %b
+  zstyle ':prezto:module:git:info:commit' format '%F{cyan}%.7c...%f'          # %c
+  zstyle ':prezto:module:git:info:position' format '%F{cyan}%p%f'             # %p
+  zstyle ':prezto:module:git:info:action' format '%%B%F{yellow}%s%f%%b:'      # %s
+  zstyle ':prezto:module:git:info:added' format '%F{green}●%f'                # %a
+  zstyle ':prezto:module:git:info:deleted' format '%%B%F{red}✖%f%%b'          # %d
+  zstyle ':prezto:module:git:info:modified' format '%F{yellow}●%f'            # %m
+  zstyle ':prezto:module:git:info:untracked' format '%F{red}●%f'              # %u
+  zstyle ':prezto:module:git:info:unmerged' format ' %%B%F{yellow}═%f%%b'     # %U
+  zstyle ':prezto:module:git:info:ahead' format ' %%B%F{yellow}⬆%f%%b'        # %A
+  zstyle ':prezto:module:git:info:behind' format ' %%B%F{yellow}⬇%f%%b'       # %B
+  zstyle ':prezto:module:git:info:stashed' format ' %%B%F{cyan}✭%f%%b'        # %S
+  zstyle ':prezto:module:git:info:renamed' format ' %%B%F{magenta}➜%f%%b'     # %r
+  zstyle ':prezto:module:git:info:keys' format \
+  'prompt' ' (%s$(coalesce "%b" "%c" "%p")%a%m%u%d%C)' \
+  'rprompt' '%U%A%B%r%S'
+
+  # Define prompts.
+  PROMPT='${_prompt_bpm_pwd}${(e)git_info[prompt]}${editor_info[keymap]} '
+  RCMD=" %B%F{red}❮❮❮%f%b"  # indicate vim command mode
+  RPROMPT='${${KEYMAP/vicmd/$RCMD}/(main|viins)/}${git_info[rprompt]}'
+  SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+}
+
+prompt_bpm_setup "$@"
