@@ -1,6 +1,3 @@
-# chsh -s /bin/zsh
-
-
 if [ -d ~/.zprezto ]
 then
   echo "\033[0;33mYou already have prezto installed.\033[0m Upgrading..."
@@ -10,8 +7,6 @@ then
   /usr/bin/env git pull
   exit
 fi
-
-zsh
 
 echo "\033[0;34mCloning prezto...\033[0m"
 hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/loranger/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" || {
@@ -45,3 +40,4 @@ chsh -s `which zsh`
 
 echo "\n\n \033[0;32mPrezto is ready\033[0m"
 source ~/.zshrc
+zsh
