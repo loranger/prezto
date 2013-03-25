@@ -11,7 +11,7 @@ fi
 zsh
 
 echo "\033[0;34mCloning prezto...\033[0m"
-hash git >/dev/null && /usr/bin/env git clone --quiet --recursive https://github.com/loranger/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" || {
+hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/loranger/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" || {
   echo "\033[0;31mFailed : Git is not installed\033[0m"
   os=`uname`
   if [[ "$os" == 'Linux' ]]; then
@@ -41,5 +41,5 @@ echo "\033[0;34mSet zsh as your default shell\033[0m"
 chsh -s `which zsh`
 
 echo "\n\n \033[0;32mPrezto is ready\033[0m"
+/usr/bin/env zsh
 source ~/.zshrc
-`which zsh`
