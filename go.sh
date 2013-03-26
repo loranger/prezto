@@ -41,7 +41,7 @@ done
 
 
 echo "\033[0;34mSet zsh as your default shell\033[0m"
-chsh -s `which zsh`
+chsh $USER -s $(which zsh);
 
 echo "\n\n \033[0;32mPrezto is ready\033[0m"
 /usr/bin/env zsh
