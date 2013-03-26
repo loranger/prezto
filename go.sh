@@ -39,10 +39,8 @@ do
   ln -s $file $HOME/.$rcfile
 done
 
-
-echo "\033[0;34mSet zsh as your default shell\033[0m"
-chsh $USER -s $(which zsh);
-
 echo "\n\n \033[0;32mPrezto is ready\033[0m"
-/usr/bin/env zsh
-source ~/.zshrc
+
+echo "\033[0;34mNow set zsh as your default shell by typing :\033[0m"
+echo "chsh -s $(which zsh)"
+echo "\033[0;34mand start a new term.\033[0m"
