@@ -13,6 +13,7 @@ Auto-installer FTW
 
 	curl -L https://github.com/loranger/prezto/raw/master/go.sh | sh
 or
+
 	wget --no-check-certificate https://github.com/loranger/prezto/raw/master/go.sh -O - | sh
 
 License
