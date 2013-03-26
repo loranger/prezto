@@ -1,3 +1,5 @@
+#!/bin/sh
+
 echo ""
 
 if [ -d ~/.zprezto ]
