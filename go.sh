@@ -8,8 +8,6 @@ then
   exit
 fi
 
-zsh
-
 echo "\033[0;34mCloning prezto...\033[0m"
 hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/loranger/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" || {
   echo "\033[0;31mFailed : Git is not installed\033[0m"
@@ -26,16 +24,17 @@ hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/lor
   exit
 }
 
-if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]
-then
-  echo "\033[0;33mFound ~/.zshrc.\033[0m \033[0;32mBacking up to ~/.zshrc.old\033[0m";
-  mv ~/.zshrc ~/.zshrc.old;
-fi
-
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+for file in $HOME/.zprezto/runcoms/z*
+do
+  rcfile=`basename $file`
+  if [ -f $HOME/.$rcfile ] || [ -h $HOME/.$rcfile ]
+  then
+    echo "\033[0;33mFound ~/.$rcfile.\033[0m \033[0;32mBacking up to ~/.$rcfile.old\033[0m";
+    mv $HOME/.$rcfile $HOME/.$rcfile.old;
+  fi
+  ln -s $file $HOME/.$rcfile
 done
+
 
 echo "\033[0;34mSet zsh as your default shell\033[0m"
 chsh -s `which zsh`
