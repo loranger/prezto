@@ -1,3 +1,5 @@
+echo ""
+
 if [ -d ~/.zprezto ]
 then
   echo "\033[0;33mYou already have prezto installed.\033[0m Upgrading..."
@@ -9,7 +11,7 @@ then
 fi
 
 echo "\033[0;34mCloning prezto...\033[0m"
-hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/loranger/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" || {
+hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/loranger/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null 2>&1 || {
   echo "\033[0;31mFailed : Git is not installed\033[0m"
   os=`uname`
   if [[ "$os" == 'Linux' ]]; then
@@ -29,7 +31,7 @@ do
   rcfile=`basename $file`
   if [ -f $HOME/.$rcfile ] || [ -h $HOME/.$rcfile ]
   then
-    echo "\033[0;33mFound ~/.$rcfile.\033[0m \033[0;32mBacking up to ~/.$rcfile.old\033[0m";
+    echo "\033[0;33mFound ~/.$rcfile file.\033[0m \033[0;32mMoved to ~/.$rcfile.old\033[0m";
     mv $HOME/.$rcfile $HOME/.$rcfile.old;
   fi
   ln -s $file $HOME/.$rcfile
