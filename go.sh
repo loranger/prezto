@@ -39,7 +39,7 @@ do
   ln -s $file $HOME/.$rcfile
 done
 
-echo "\n\n \033[0;32mPrezto is ready\033[0m"
+echo "\033[0;32mPrezto is ready\033[0m"
 
 echo "\033[0;34mNow set zsh as your default shell by typing :\033[0m"
 echo "chsh -s $(which zsh)"
