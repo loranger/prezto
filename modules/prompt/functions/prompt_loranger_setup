@@ -46,19 +46,30 @@ function prompt_sorin_setup {
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_sorin_precmd
 
+  # Prompt special characters
+  S=(❯ ❮)
+  # S=(⎠ ⎝)
+
+  # Prompt special characters colors
+  C=(red yellow green)
+  # C=(blue cyan magenta)
+  # C=(192 81 39)
+  # C=(98 100 15)
+  # C=(121 228 64)
+  # C=(214 26 224)
+  # C=(194 26 232)
+  # C=(72 179 237)
+  # C=(1 215 101)
+  # C=(240 208 253)
+  # C=(193 36 66)
+  # C=(white 11 16)
+
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
 
-  # zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{red}❯%F{yellow}❯%F{green}❯%f%b'
-  # zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{red}⎠%F{yellow}⎠%F{green}⎠%f%b'
   # zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{red}⚡ %f%b'
-  # zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{blue}⎠%F{cyan}⎠%F{magenta}⎠%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{white}⎠%F{grey}⎠%F{black}⎠%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{white}⎠%F{11}⎠%F{16}⎠%f%b'
-
+  zstyle ':prezto:module:editor:info:keymap:primary' format ' %B%F{'$C[1]'}'$S[1]'%F{'$C[2]'}'$S[1]'%F{'$C[3]'}'$S[1]'%f%b'
   zstyle ':prezto:module:editor:info:keymap:primary:overwrite' format ' %F{red}♺%f'
-
-  # zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{green}❮%F{yellow}❮%F{red}❮%f%b'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{16}⎝%F{11}⎝%F{white}⎝%f%b'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format ' %B%F{'$C[3]'}'$S[2]'%F{'$C[2]'}'$S[2]'%F{'$C[1]'}'$S[2]'%f%b'
 
 
   zstyle ':prezto:module:git:info:action' format ':%%B%F{yellow}%s%f%%b'
