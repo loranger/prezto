@@ -8,7 +8,7 @@ then
   cd ~/.zprezto
   /usr/bin/env git add .
   /usr/bin/env git commit -a -m["Commit changes before upgrade"]
-  /usr/bin/env git pull
+  /usr/bin/env git pull --recurse-submodules
   exit
 fi
 
