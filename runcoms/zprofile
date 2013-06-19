@@ -5,3 +5,6 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+function zupgrade {
+	~/.zprezto/go.sh
+}
