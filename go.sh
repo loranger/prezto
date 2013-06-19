@@ -1,5 +1,6 @@
 #!/bin/sh
 
+clear
 echo ""
 
 if [ -d ~/.zprezto ]
@@ -7,7 +8,7 @@ then
   echo "\033[0;33mYou already have prezto installed.\033[0m Upgrading..."
   cd ~/.zprezto
   /usr/bin/env git add .
-  /usr/bin/env git commit -a -m["Commit changes before upgrade"]
+  /usr/bin/env git commit --all --message["Commit changes before upgrade"] --quiet
   /usr/bin/env git pull --recurse-submodules
   exit
 fi
