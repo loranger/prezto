@@ -15,5 +15,9 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
+if [ -f ~/.alias ]; then
+    . ~/.alias
+fi
+
 # Customize to your needs...
 
