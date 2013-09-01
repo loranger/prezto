@@ -10,6 +10,7 @@ then
   /usr/bin/env git add .
   /usr/bin/env git commit --all --message "Commit changes before upgrade" --quiet
   /usr/bin/env git pull --recurse-submodules
+  /usr/bin/env git submodule update
   exit
 fi
 
