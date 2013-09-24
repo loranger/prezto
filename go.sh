@@ -3,6 +3,13 @@
 clear
 echo ""
 
+hash zsh 2>/dev/null || {
+  echo "\033[0;31mFailed : ZSH is missing\033[0m"
+  echo " ➥ Prezto does not work without ZSH. Install it first."
+  echo ""
+  exit
+}
+
 if [ -d ~/.zprezto ]
 then
   echo "\033[0;33mYou already have prezto installed.\033[0m Upgrading..."
