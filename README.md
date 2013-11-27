@@ -1,10 +1,9 @@
 Prezto — Instantly Awesome Zsh
 ==============================
 
-This fork of Prezto is a customized one for my very needs.
+This fork of Prezto is a customized one for my own needs.
 
 You'd rather checkout the [original prezto project](https://github.com/sorin-ionescu/prezto)
-
 
 Installation
 ------------

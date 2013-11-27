@@ -44,7 +44,7 @@ alias rb='ruby'
 if (( $+commands[bundle] )); then
   alias rbb='bundle'
   alias rbbe='rbb exec'
-  alias rbbi='rbb install --path vendor/bundle'
+  alias rbbi='rbb install'
   alias rbbl='rbb list'
   alias rbbo='rbb open'
   alias rbbp='rbb package'
@@ -52,6 +52,8 @@ if (( $+commands[bundle] )); then
   alias rbbI='rbbi \
     && rbb package \
     && print .bundle       >>! .gitignore \
+    && print vendor/assets >>! .gitignore \
     && print vendor/bundle >>! .gitignore \
     && print vendor/cache  >>! .gitignore'
 fi
+
