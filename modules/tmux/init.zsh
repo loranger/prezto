@@ -16,11 +16,11 @@ fi
 # Auto Start
 #
 
-if [[ -z "$TMUX" ]] && ( \
+if [[ -z "$TMUX" && ( -z "$INSIDE_EMACS" || -z "$EMACS" || -z "$VIM" ) ]] && ( \
   ( [[ -n "$SSH_TTY" ]] && zstyle -t ':prezto:module:tmux:auto-start' remote ) ||
   ( [[ -z "$SSH_TTY" ]] && zstyle -t ':prezto:module:tmux:auto-start' local ) \
 ); then
-  tmux_session='#Prezto'
+  tmux_session='prezto'
 
   if ! tmux has-session -t "$tmux_session" 2> /dev/null; then
     # Ensure that tmux server is started.
