@@ -47,11 +47,11 @@ function prompt_loranger_setup {
   add-zsh-hook precmd prompt_loranger_precmd
 
   # Prompt special characters
-  S=(❯ ❮)
-  # S=(⎠ ⎝)
+  # S=(❯ ❮)
+  S=(⎠ ⎝)
 
   # Prompt special characters colors
-  C=(red yellow green)
+  # C=(red yellow green)
   # C=(blue cyan magenta)
   # C=(192 81 39)
   # C=(98 100 15)
@@ -66,7 +66,8 @@ function prompt_loranger_setup {
   # C=(197 215 32)
   # C=(208 229 23)
   # C=(11 144 95)
-  # C=(109 229 3)
+  C=(109 229 3)
+  # C=($((`cat /dev/urandom|od -N1 -An -i` % 255)) $((`cat /dev/urandom|od -N1 -An -i` % 255)) $((`cat /dev/urandom|od -N1 -An -i` % 255)))
 
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
 
@@ -98,8 +99,10 @@ function prompt_loranger_setup {
 
   # Define prompts.
   # PROMPT='%m %F{cyan}${_prompt_loranger_pwd}%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  PROMPT='%m %F{black}${_prompt_loranger_pwd}%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${git_info[rprompt]}'
+  # PROMPT='%m %F{black}${_prompt_loranger_pwd}%f${git_info:+${(e)git_info[prompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
+  PROMPT='%m %F{240}${_prompt_loranger_pwd}%f%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
+  # RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${git_info[rprompt]}'
+  RPROMPT='${editor_info[overwrite]}%(?:: %F{red}⏎%f)${VIM:+" %B%F{green}V%f%b"}${git_info:+${(e)git_info[prompt]}}${git_info[rprompt]}'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
