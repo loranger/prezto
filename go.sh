@@ -5,7 +5,7 @@
 #
 
 # Help oneliner:
-[ "$1" == "--help" ] && { sed -n -e '/^# Usage:/,/^$/ s/^# \?//p' < $0; exit; }
+[ "$1" = "--help" ] && { sed -n -e '/^# Usage:/,/^$/ s/^# \?//p' < $0; exit; }
 
 clear
 echo ""
