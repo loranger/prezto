@@ -1,4 +1,11 @@
 #!/bin/sh
+# Usage: go.sh <githubuser>
+# To set a parameter, you must add "-s" to sh, like:
+# wget <url> -O - | sh -s <githubuser>
+#
+
+# Help oneliner:
+[ "$1" == "--help" ] && { sed -n -e '/^# Usage:/,/^$/ s/^# \?//p' < $0; exit; }
 
 clear
 echo ""
