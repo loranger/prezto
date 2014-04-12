@@ -3,6 +3,12 @@
 clear
 echo ""
 
+githubuser=loranger
+if [ -n "$1" ]
+then
+	githubuser=$1
+fi
+
 hash zsh 2>/dev/null || {
   echo "\033[0;31mFailed : ZSH is missing\033[0m"
   echo " ➥ Prezto does not work without ZSH. Install it first."
@@ -23,7 +29,7 @@ then
 fi
 
 echo "\033[0;34mCloning prezto...\033[0m"
-hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/loranger/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null 2>&1 || {
+hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/$githubuser/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null 2>&1 || {
   echo "\033[0;31mFailed : Git is not installed\033[0m"
   os=`uname`
   if [ "$os" == 'Linux' ]; then
