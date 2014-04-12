@@ -1,7 +1,9 @@
 #!/bin/sh
-# Usage: go.sh <githubuser>
+# Usage: go.sh [--ssh] <githubuser>
+#  --ssh : clone repository with ssh scheme instead of https
+#
 # To set a parameter, you must add "-s" to sh, like:
-# wget <url> -O - | sh -s <githubuser>
+# wget <url> -O - | sh -s --ssh <githubuser>
 #
 
 # Help oneliner:
@@ -11,10 +13,21 @@ clear
 echo ""
 
 githubuser=loranger
-if [ -n "$1" ]
-then
-	githubuser=$1
-fi
+cloneurl=https://github.com/
+cloneurlend=.git
+while [ $# -gt 0 ]
+do
+	case "$1" in
+		--ssh) cloneurl=git@github.com:
+			cloneurlend=
+			;;
+		*)
+			githubuser=$1;
+			;;
+	esac
+	shift
+done
+cloneurl=$cloneurl$githubuser/prezto$cloneurlend
 
 hash zsh 2>/dev/null || {
   echo "\033[0;31mFailed : ZSH is missing\033[0m"
@@ -36,7 +49,7 @@ then
 fi
 
 echo "\033[0;34mCloning prezto...\033[0m"
-hash git >/dev/null && /usr/bin/env git clone --recursive https://github.com/$githubuser/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null 2>&1 || {
+hash git >/dev/null && /usr/bin/env git clone --recursive $cloneurl "${ZDOTDIR:-$HOME}/.zprezto" >/dev/null 2>&1 || {
   echo "\033[0;31mFailed : Git is not installed\033[0m"
   os=`uname`
   if [ "$os" == 'Linux' ]; then
