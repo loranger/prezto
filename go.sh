@@ -44,7 +44,7 @@ then
   /usr/bin/env git add .
   /usr/bin/env git commit --all --message "Commit changes before upgrade" --quiet
   /usr/bin/env git pull --recurse-submodules
-  /usr/bin/env git submodule update
+  /usr/bin/env git submodule update --init --recursive
   exit
 fi
 
@@ -64,15 +64,16 @@ hash git >/dev/null && /usr/bin/env git clone --recursive $cloneurl "${ZDOTDIR:-
   exit
 }
 
-for file in $HOME/.zprezto/runcoms/z*
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N);
 do
   rcfile=`basename $file`
-  if [ -f $HOME/.$rcfile ] || [ -h $HOME/.$rcfile ]
+  if [ -f ${ZDOTDIR:-$HOME}/.$rcfile ] || [ -h ${ZDOTDIR:-$HOME}/.$rcfile ]
   then
     echo "\033[0;33mFound ~/.$rcfile file.\033[0m \033[0;32mMoved to ~/.$rcfile.old\033[0m";
-    mv $HOME/.$rcfile $HOME/.$rcfile.old;
+    mv ${ZDOTDIR:-$HOME}/.$rcfile ${ZDOTDIR:-$HOME}/.$rcfile.old;
   fi
-  ln -s $file $HOME/.$rcfile
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 
 echo "\033[0;32mPrezto is ready\033[0m"

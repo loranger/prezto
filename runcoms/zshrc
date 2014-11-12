@@ -20,4 +20,3 @@ if [ -f ~/.alias ]; then
 fi
 
 # Customize to your needs...
-

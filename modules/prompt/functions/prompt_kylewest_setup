@@ -1,13 +1,18 @@
 #
-# A theme based on sorin theme
-#  * ruby info shown on the right
-#  * git info on the left
-#  * editor mode as $> or <#
-#  * single line prompt
+# A single line theme with Git information on the left and Ruby on the right.
 #
 # Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
 #   Kyle West <kswest@gmail.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+# Features:
+#   - Indicates dirty Git repository.
+#   - Indicates the Ruby version.
+#   - Indicates vi modes.
+#
+# Screenshots:
+#   http://i.imgur.com/dCwhynn.png
+#
 
 function prompt_kylewest_precmd {
   setopt LOCAL_OPTIONS
@@ -15,11 +20,10 @@ function prompt_kylewest_precmd {
 
   # Get Git repository information.
   if (( $+functions[git-info] )); then
-    git-info on
     git-info
   fi
 
-  # Get ruby information
+  # Get Ruby information.
   if (( $+functions[ruby-info] )); then
     ruby-info
   fi
@@ -36,22 +40,26 @@ function prompt_kylewest_setup {
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_kylewest_precmd
 
-  # editor
+  # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
-  zstyle ':prezto:module:editor:info:keymap:primary' format "%B%F{green}$>%f%b"
-  zstyle ':prezto:module:editor:info:keymap:alternate' format "%B%F{magenta}<#%f%b"
+  zstyle ':prezto:module:editor:info:keymap:primary' format "%B%F{green}❯%f%b"
+  zstyle ':prezto:module:editor:info:keymap:alternate' format "%B%F{magenta}❮%f%b"
 
-  # ruby info (rvm, rbenv)
-  zstyle ':prezto:module:ruby:info:version' format '[ %v ]'
-
-  # vcs
+  # Set git-info parameters.
+  zstyle ':prezto:module:git:info' verbose 'no'
   zstyle ':prezto:module:git:info:branch' format '%F{yellow}%b%f'
   zstyle ':prezto:module:git:info:dirty' format '%B%F{red}!%f%b'
+  zstyle ':prezto:module:git:info:indexed' format ' '
+  zstyle ':prezto:module:git:info:unindexed' format ' '
+  zstyle ':prezto:module:git:info:untracked' format ' '
   zstyle ':prezto:module:git:info:keys' format 'prompt' '- %b%D '
 
-  # prompts
+  # Set ruby-info parameters.
+  zstyle ':prezto:module:ruby:info:version' format '%F{blue}[%v]%f'
+
+  # Define prompts.
   PROMPT='%F{cyan}%c%f ${git_info[prompt]}${editor_info[keymap]} '
-  RPROMPT='%F{blue}${ruby_info[version]}'
+  RPROMPT='${ruby_info[version]}'
 }
 
 prompt_kylewest_setup "$@"
