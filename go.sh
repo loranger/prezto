@@ -72,7 +72,7 @@ do
     echo "\033[0;33mFound ~/.$rcfile file.\033[0m \033[0;32mMoved to ~/.$rcfile.old\033[0m";
     mv ${ZDOTDIR:-$HOME}/.$rcfile ${ZDOTDIR:-$HOME}/.$rcfile.old;
   fi
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  ln -s $file $HOME/.$rcfile
 done
 
 echo "\033[0;32mPrezto is ready\033[0m"
