@@ -64,8 +64,7 @@ hash git >/dev/null && /usr/bin/env git clone --recursive $cloneurl "${ZDOTDIR:-
   exit
 }
 
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N);
+for file in $HOME/.zprezto/runcoms/z*
 do
   rcfile=`basename $file`
   if [ -f ${ZDOTDIR:-$HOME}/.$rcfile ] || [ -h ${ZDOTDIR:-$HOME}/.$rcfile ]
