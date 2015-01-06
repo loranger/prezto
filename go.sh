@@ -43,8 +43,8 @@ then
   # git pull && git submodule update --init --recursive
   /usr/bin/env git add .
   /usr/bin/env git commit --all --message "Commit changes before upgrade" --quiet
-  /usr/bin/env git pull --recurse-submodules
-  /usr/bin/env git submodule update --init --recursive
+  /usr/bin/env git submodule foreach 'git fetch origin --tags; git checkout master; git pull' && git pull --recurse-submodules && git submodule update --init --recursive
+  
   exit
 fi
 
