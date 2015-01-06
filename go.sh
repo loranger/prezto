@@ -40,11 +40,11 @@ if [ -d ~/.zprezto ]
 then
   echo "\033[0;33mYou already have prezto installed.\033[0m Upgrading..."
   cd ~/.zprezto
-  # git pull && git submodule update --init --recursive
   /usr/bin/env git add .
+  /usr/bin/env git submodule foreach 'git fetch origin --quiet; git checkout master --quiet; git pull --quiet'
   /usr/bin/env git commit --all --message "Commit changes before upgrade" --quiet
-  /usr/bin/env git submodule foreach 'git fetch origin --tags; git checkout master; git pull' && git pull --recurse-submodules && git submodule update --init --recursive
-  
+  /usr/bin/env git pull
+  /usr/bin/env git submodule update --init --recursive
   exit
 fi
 
