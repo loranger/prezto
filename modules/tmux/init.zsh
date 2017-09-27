@@ -31,14 +31,14 @@ if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" ]] && ( \
 
   # Create a 'prezto' session if no session has been defined in tmux.conf.
   if ! tmux has-session 2> /dev/null; then
-    tmux_session='prezto'
+    zstyle -s ':prezto:module:tmux:session' name tmux_session || tmux_session='prezto'
     tmux \
       new-session -d -s "$tmux_session" \; \
       set-option -t "$tmux_session" destroy-unattached off &> /dev/null
   fi
 
-  # Attach to the 'prezto' session or to the last session used.
-  exec tmux $_tmux_iterm_integration attach-session
+  # Attach to the 'prezto' session or to the last session used. (detach first)
+  exec tmux $_tmux_iterm_integration attach-session -d
 fi
 
 #

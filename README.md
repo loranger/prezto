@@ -18,6 +18,7 @@ or
 License
 -------
 
+<<<<<<< HEAD
 (The MIT License)
 
 Copyright (c) 2009-2011 Robby Russell and contributors.
@@ -41,3 +42,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+=======
+This project is licensed under the MIT License.
+
+[1]: http://www.zsh.org
+[2]: http://i.imgur.com/nrGV6pg.png "sorin theme"
+[3]: http://git-scm.com
+[4]: https://github.com
+[5]: http://gitimmersion.com
+[6]: http://gitref.org
+[7]: http://www.bash2zsh.com/zsh_refcard/refcard.pdf
+[8]: http://grml.org/zsh/zsh-lovers.html
+>>>>>>> 1d0bee60989602c921251ab259327a2cf11b90d3
