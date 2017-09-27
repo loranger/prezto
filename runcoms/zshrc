@@ -22,3 +22,8 @@ fi
 # Customize to your needs...
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+function save()
+{
+	wget -e robots=off --page-requisites "$@"
+}

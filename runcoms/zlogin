@@ -12,6 +12,9 @@
   if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
     zcompile "$zcompdump"
   fi
+
+  rm -f .ssh/config && build-ssh-config
+  
 } &!
 
 # Print a random, hopefully interesting, adage.

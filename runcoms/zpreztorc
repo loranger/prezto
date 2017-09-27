@@ -183,6 +183,12 @@ zstyle ':prezto:module:prompt' theme 'loranger'
 #   'rm*-rf*' 'fg=white,bold,bg=red'
 
 #
+# History
+#
+# zstyle ':prezto:module:history-substring-search' case-sensitive 'yes'
+zstyle ':prezto:module:history-substring-search' color 'yes'
+
+#
 # Terminal
 #
 
