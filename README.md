@@ -18,7 +18,6 @@ or
 License
 -------
 
-<<<<<<< HEAD
 (The MIT License)
 
 Copyright (c) 2009-2011 Robby Russell and contributors.
@@ -53,4 +52,3 @@ This project is licensed under the MIT License.
 [6]: http://gitref.org
 [7]: http://www.bash2zsh.com/zsh_refcard/refcard.pdf
 [8]: http://grml.org/zsh/zsh-lovers.html
->>>>>>> 1d0bee60989602c921251ab259327a2cf11b90d3
