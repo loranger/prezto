@@ -45,14 +45,41 @@ typeset -gU cdpath fpath mailpath path
 #   $cdpath
 # )
 
-export GOPATH=$(brew --prefix)/opt/go
+if type "brew" > /dev/null; then
+
+  # GO
+  export GOPATH=$(brew --prefix)/opt/go
+  path=(
+    $GOPATH/bin
+    ~/.composer/vendor/bin
+    $path
+  )
+
+  # NPM
+  if type "npm" > /dev/null; then
+    path=(
+      $(brew --prefix)/share/npm/bin
+      $path
+    )
+  fi
+
+  # COMPOSER
+  if type "composer" > /dev/null; then
+    path=(
+      ~/.composer/vendor/bin
+      $path
+    )
+  fi
+
+  path=(
+    $(brew --prefix)/{bin,sbin}
+    $path
+  )
+
+fi
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-  $(brew --prefix)/{bin,sbin}
-  $(brew --prefix)/share/npm/bin
-  $GOPATH/libexec/bin
-  ~/.composer/vendor/bin
   $path
 )
 
