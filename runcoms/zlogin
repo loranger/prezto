@@ -13,8 +13,10 @@
     zcompile "$zcompdump"
   fi
 
-  rm -f .ssh/config && build-ssh-config
-  
+  if typeset -f build-ssh-config > /dev/null; then
+    rm -f .ssh/config && build-ssh-config
+  fi
+
 } &!
 
 # Print a random, hopefully interesting, adage.
