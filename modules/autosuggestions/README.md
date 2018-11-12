@@ -1,9 +1,4 @@
 Autosuggestions
----------------
-
-Integrates zsh-autosuggestions into Prezto.
-
-Autosuggestions
 ===============
 
 Integrates [zsh-autosuggestions][1] into Prezto, which implements the
@@ -45,6 +40,14 @@ To set the query found color, add the following line to *zpreztorc*:
 ```sh
 zstyle ':prezto:module:autosuggestions:color' found ''
 ```
+
+Troubleshooting
+---------------
+
+### Autosuggestions from previous sessions don't show up
+
+For autosuggestions from previous shell sessions to work, please make sure you
+also have the `history` module enabled.
 
 Authors
 -------
