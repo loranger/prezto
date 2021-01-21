@@ -54,6 +54,13 @@ function prompt_sorin_async_callback {
         zle && zle reset-prompt
       fi
       ;;
+    "[async]")
+      # Code is 1 for corrupted worker output and 2 for dead worker.
+      if [[ $2 -eq 2 ]]; then
+	  # Our worker died unexpectedly.
+          typeset -g prompt_prezto_async_init=0
+      fi
+      ;;
   esac
 }
 
@@ -110,8 +117,6 @@ function prompt_sorin_setup {
   setopt LOCAL_OPTIONS
   unsetopt XTRACE KSH_ARRAYS
   prompt_opts=(cr percent sp subst)
-  _prompt_sorin_precmd_async_pid=0
-  _prompt_sorin_precmd_async_data=$(mktemp "${TMPDIR:-/tmp}/sorin-prompt-async-XXXXXXXXXX")
 
   # Load required functions.
   autoload -Uz add-zsh-hook
@@ -119,6 +124,9 @@ function prompt_sorin_setup {
 
   # Add hook for calling git-info before each command.
   add-zsh-hook precmd prompt_sorin_precmd
+
+  # Tell prezto we can manage this prompt
+  zstyle ':prezto:module:prompt' managed 'yes'
 
   # Set editor-info parameters.
   zstyle ':prezto:module:editor:info:completing' format '%B%F{7}...%f%b'
@@ -178,3 +186,4 @@ function prompt_sorin_preview {
 }
 
 prompt_sorin_setup "$@"
+# vim: ft=zsh

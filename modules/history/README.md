@@ -3,13 +3,18 @@ History
 
 Sets [history][1] options and defines history aliases.
 
+**Note:** If you are migrating from oh-my-zsh and want to keep your history, you
+will either need to set HISTFILE manually to `$HOME/.zsh_history` or rename
+`~/.zsh_history` to ~/.zhistory`.
+
 Options
 -------
 
   - `BANG_HIST` treats the **!** character specially during expansion.
   - `EXTENDED_HISTORY` writes the history file in the *:start:elapsed;command* format.
-  - `INC_APPEND_HISTORY` writes to the history file immediately, not when the shell exits.
-  - `SHARE_HISTORY` shares history between all sessions.
+  - `SHARE_HISTORY` shares history between all sessions. Note that
+    `SHARE_HISTORY`, `INC_APPEND_HISTORY`, and `INC_APPEND_HISTORY_TIME` are
+    mutually exclusive.
   - `HIST_EXPIRE_DUPS_FIRST` expires a duplicate event first when trimming history.
   - `HIST_IGNORE_DUPS` does not record an event that was just recorded again.
   - `HIST_IGNORE_ALL_DUPS` deletes an old recorded event if a new event is a duplicate.
